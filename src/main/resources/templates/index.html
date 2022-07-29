@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8"/>
 <title th:text="${titulo}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"></link>
 </head>
 <body>
-	<h1 th:text="${titulo}"></h1>
+	<h1 class="color-rojo" th:text="${titulo}"></h1>
+	<h2 class="color-azul">Probando CSS</h2>
 	
+	<img alt="" th:src="@{/images/fondosaul.jpg}">
 	
 </body>
 </html>

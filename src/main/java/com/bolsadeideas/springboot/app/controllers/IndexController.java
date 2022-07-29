@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,16 @@ import com.bolsadeideas.springboot.app.models.Usuario;
 public class IndexController {
 	/* un Componente controller puede tener varios metodos */
 	
-	
+	@Value("${texto.indexcontroller.index.titulo}")
+	private String textoIndex;
+	@Value("${texto.indexcontroller.perfil.titulo}")
+	private String textoPerfil;
+	@Value("${texto.indexcontroller.listar.titulo}")
+	private String textoListar;
 	
 	@GetMapping({"/", "/index", "/home"})
 	public String index(Model model) {
-		model.addAttribute("titulo", "Spring Framework"); // de esta manera se pasa informacion a la vista
+		model.addAttribute("titulo", textoIndex); // de esta manera se pasa informacion a la vista
 		return "index";
 	}
 	
@@ -34,7 +40,7 @@ public class IndexController {
 		usuario.setApellido("Supanta");		//se agrega valor con setApellido al new Usuario
 		usuario.setEmail("alfredo@gmail.com");		//se agrega valor con setEmail al new Usuario
 		model.addAttribute("usuario", usuario); // se define a la izquierda el nombre para llamar, derecha el contenido
-		model.addAttribute("titulo", "Perfil de usuario: ".concat(usuario.getNombre()));
+		model.addAttribute("titulo", textoPerfil.concat(usuario.getNombre()));
 		return "perfil";					// retorna la vista perfil
 	}
 	
@@ -49,7 +55,7 @@ public class IndexController {
 		
 		
 		
-		model.addAttribute("titulo", "Listado de usuarios");
+		model.addAttribute("titulo", textoListar);
 		return "listar";
 	}
 	
